@@ -13,3 +13,9 @@ export const getCitiesFail = (payload) => ({
   type: constants.GET_CITIES_FAIL,
   payload,
 });
+
+export const changeSelectedCities = (payload) => ({
+  type: constants.CHANGE_SELECTED_CITIES,
+  payload,
+});
+
