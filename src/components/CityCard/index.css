@@ -1,0 +1,15 @@
+.d-inline{
+    display: inline-block;
+}
+
+.align-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.euiCard{
+    max-width: 600px;
+    margin: 10px;
+    display: inline-block;
+}

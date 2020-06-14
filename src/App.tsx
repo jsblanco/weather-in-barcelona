@@ -12,8 +12,8 @@ import {
 } from "@elastic/eui";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "./redux/actions";
-import SearchBox from "./components/SearchBox";
-import CityCard from "./components/CityCard";
+import SearchBox from "./components/SearchBox/";
+import CityCard from "./components/CityCard/";
 
 function App() {
   const dispatch = useDispatch();

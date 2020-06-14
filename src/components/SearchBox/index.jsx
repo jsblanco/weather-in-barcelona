@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { EuiComboBox } from "@elastic/eui";
 import { useSelector, useDispatch } from "react-redux";
-import * as actions from "../redux/actions";
+import * as actions from "../../redux/actions";
 
-export default function SearchBox() {
+export default () => {
   const dispatch = useDispatch();
   const { cities, selectedCities } = useSelector((State) => State);
   const [options, setOptions] = useState([]);
-  const [query, setQuery] = useState("");
 
   useEffect(() => {
     setOptions(cities);
