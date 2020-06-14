@@ -1,6 +1,7 @@
 import * as constants from "./constants";
 const initialState = {
   cities: [],
+  selectedCities: [],
   error: "",
   searchKeyword: false,
 };
@@ -16,7 +17,7 @@ export default (state = initialState, { type, payload }) => {
         loading: true,
       };
     case constants.GET_CITIES_SUCCESS:
-      let newList = payload;
+      let newList = payload.municipios;
       return {
         ...state,
         cities: newList,

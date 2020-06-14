@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   EuiPage,
   EuiPageBody,
@@ -8,22 +8,30 @@ import {
   EuiPageContentHeaderSection,
   EuiPageHeader,
   EuiPageHeaderSection,
-  EuiPageSideBar,
   EuiTitle,
 } from '@elastic/eui';
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "./redux/actions"
+
 
 function App() {
+  const dispatch = useDispatch();
+  const {cities} = useSelector((state) => state.cities);
+  const {selectedCities} = useSelector((state) => state.cities);
+
+  useEffect(() => {
+    if (!cities) dispatch(actions.getCitiesRequest())
+  }, [])
+  
   return (
     <EuiPage>
-    <EuiPageSideBar>SideBar nav</EuiPageSideBar>
-    <EuiPageBody component="div">
+    <EuiPageBody component="div" className="overflow-auto p-5">
       <EuiPageHeader>
         <EuiPageHeaderSection>
-          <EuiTitle size="l">
-            <h1>Page title</h1>
+          <EuiTitle size="l" className="text-center">
+            <h1>El tiempo en Barcelona</h1>
           </EuiTitle>
         </EuiPageHeaderSection>
-        <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
       </EuiPageHeader>
       <EuiPageContent>
         <EuiPageContentHeader>
@@ -31,9 +39,6 @@ function App() {
             <EuiTitle>
               <h2>Content title</h2>
             </EuiTitle>
-          </EuiPageContentHeaderSection>
-          <EuiPageContentHeaderSection>
-            Content abilities
           </EuiPageContentHeaderSection>
         </EuiPageContentHeader>
         <EuiPageContentBody>Content body</EuiPageContentBody>
