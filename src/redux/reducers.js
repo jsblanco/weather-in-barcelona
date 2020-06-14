@@ -42,6 +42,15 @@ export default (state = initialState, { type, payload }) => {
         error: payload,
       };
     case constants.GET_CITY_WEATHER_SUCCESS:
+      let cityWeatherData = payload;
+      let apostrophe = payload.municipio.NOMBRE.indexOf("&#39;");
+      apostrophe === -1
+        ? (cityWeatherData.municipio.NOMBRE = payload.municipio.NOMBRE)
+        : (cityWeatherData.municipio.NOMBRE =
+            payload.municipio.NOMBRE.substring(0, apostrophe) +
+            "'" +
+            payload.municipio.NOMBRE.substring(apostrophe + 5));
+
       return {
         ...state,
         weatherData: [...state.weatherData, payload],
@@ -55,7 +64,9 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         selectedCities: state.selectedCities.filter((city) => city !== payload),
-        weatherData: state.weatherData.filter(city=>(city.municipio.ID_REL.substring(1,6)!==payload.id))
+        weatherData: state.weatherData.filter(
+          (city) => city.municipio.ID_REL.substring(1, 6) !== payload.id
+        ),
       };
     default:
       return state;

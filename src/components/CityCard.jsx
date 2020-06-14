@@ -11,7 +11,16 @@ export default function CityCard({city}) {
           title={`El tiempo en ${city.municipio.NOMBRE}`}
           description={` ${!!city && "We got data!"} `}
           //onClick={() => window.alert('Card clicked')}
-        />
+        >
+            <ul>Temperaturas:
+            <li>
+                <b>Mínima: </b>{city.temperaturas.min}
+            </li>
+            <li>
+                <b>Máxima: </b>{city.temperaturas.max}
+            </li>
+            </ul>
+        </EuiCard>
       </EuiFlexItem>
     )
 }
