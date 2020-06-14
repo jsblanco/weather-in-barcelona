@@ -5,5 +5,5 @@ import {axiosInstance} from "./axiosInstance/axiosInstance";
   }
 
   export const getCityWeather = (cityId) => {
-    return axiosInstance.get(`/${cityId.substring(1,5)}`)
+    return axiosInstance.get(`/${cityId}`)
   }

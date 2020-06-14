@@ -14,7 +14,19 @@ function* getCities(payload) {
   }
 }
 
+function* getCityWeather(payload) {
+  try {
+    yield call(actions.getWeatherRequest);
+    const weather = yield call(api.getCityWeather, payload.payload.id);
+    yield put(actions.getWeatherSuccess(weather));
+  } catch (error) {
+    console.error(error);
+    yield put(actions.getWeatherFail(error));
+  }
+}
+
 function* citiesSaga() {
   yield takeLatest(constants.GET_CITIES_REQUEST, getCities);
+  yield takeLatest(constants.GET_CITY_WEATHER_REQUEST, getCityWeather);
 }
 export default citiesSaga;

@@ -14,8 +14,28 @@ export const getCitiesFail = (payload) => ({
   payload,
 });
 
-export const changeSelectedCities = (payload) => ({
-  type: constants.CHANGE_SELECTED_CITIES,
+export const selectCity = (payload) => ({
+  type: constants.SELECT_CITY,
+  payload,
+});
+
+export const unselectCity = (payload) => ({
+  type: constants.UNSELECT_CITY,
+  payload,
+});
+
+export const getWeatherRequest = (payload) => ({
+  type: constants.GET_CITY_WEATHER_REQUEST,
+  payload,
+});
+
+export const getWeatherSuccess = (payload) => ({
+  type: constants.GET_CITY_WEATHER_SUCCESS,
+  payload,
+});
+
+export const getWeatherFail = (payload) => ({
+  type: constants.GET_CITY_WEATHER_FAIL,
   payload,
 });
 

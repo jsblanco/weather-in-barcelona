@@ -9,28 +9,24 @@ export default function SearchBox() {
   const [options, setOptions] = useState([]);
   const [query, setQuery] = useState("");
 
-useEffect(() => {
-setOptions(cities)
-}, [cities])
+  useEffect(() => {
+    setOptions(cities);
+  }, [cities]);
 
   const onChange = (e) => {
-    setOptions(cities.filter(city=>(city!==e)))
-    dispatch(actions.changeSelectedCities(e));
+    setOptions(cities.filter((city) => city !== e));
+    if (e.length > selectedCities.length) {
+      dispatch(actions.selectCity(e[e.length - 1]));
+    } else {
+      let cityToRemove = {};
+      selectedCities.forEach((city) => {
+        if (e.indexOf(city) === -1) {
+          cityToRemove = city;
+        }
+      });
+      dispatch(actions.unselectCity(cityToRemove));
+    }
   };
-
-
-const onSearchChange = useCallback(
-  (searchValue) => {
-    setOptions([]);
-    setOptions(
-      cities.filter((city) =>
-        city.label.toLowerCase().includes(searchValue.toLowerCase())
-      )
-    );
-  }
-);
-
-
 
 
   return (
@@ -41,13 +37,7 @@ const onSearchChange = useCallback(
       options={options}
       selectedOptions={selectedCities}
       onChange={onChange}
-     // onSearch={onSearchChange}
+      // onSearch={onSearchChange}
     />
   );
 }
-
-
-/*       let updatedCities = state.cities.filter(
-        (city) => city !== payload[payload.length - 1]
-      );
-       */
