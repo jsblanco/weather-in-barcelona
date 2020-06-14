@@ -9,6 +9,10 @@ import {
   EuiPageHeaderSection,
   EuiTitle,
 } from "@elastic/eui";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCloudSunRain,
+} from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "./redux/actions";
 import SearchBox from "./components/SearchBox/";
@@ -28,7 +32,13 @@ function App() {
         <EuiPageHeader>
           <EuiPageHeaderSection style={{width:"100%", textAlign:"center", marginTop: "30px", fontWeight:"bold"}}>
             <EuiTitle size="l" >
-              <h1>El tiempo en Barcelona</h1>
+              
+             <h1>
+             <FontAwesomeIcon icon={faCloudSunRain} 
+             style={{color: "#187bcd"}}
+             />       {"  "}
+               El tiempo en Barcelona</h1>
+            
             </EuiTitle>
           </EuiPageHeaderSection>
         </EuiPageHeader>

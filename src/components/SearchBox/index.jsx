@@ -12,13 +12,12 @@ export default () => {
     setOptions(cities);
   }, [cities]);
 
-
   const onChange = (e) => {
     setOptions(cities.filter((city) => city !== e));
     if (e.length > selectedCities.length) {
       let selectedCity = e[e.length - 1];
       dispatch(actions.selectCity(selectedCity));
-      dispatch(actions.getWeatherRequest(selectedCity))
+      dispatch(actions.getWeatherRequest(selectedCity));
     } else {
       let cityToRemove = {};
       selectedCities.forEach((city) => {
@@ -30,16 +29,25 @@ export default () => {
     }
   };
 
+  const searchHandler = (query) => {
+    let filteredOptions = cities.filter(
+      (city) =>
+        selectedCities.indexOf(city) === -1 &&
+        city.label.toLowerCase().includes(query.toLowerCase())
+    );
+    setOptions(filteredOptions);
+  };
 
   return (
     <EuiComboBox
+    style={{marginLeft:"5%", marginRight:"5%"}}
       fullWidth={true}
       placeholder="Selecciona el municipio de interés"
       async
       options={options}
       selectedOptions={selectedCities}
       onChange={onChange}
-      // onSearch={onSearchChange}
+      onSearchChange={(e) => searchHandler(e)}
     />
   );
-}
+};

@@ -1,22 +1,16 @@
 import React from "react";
-import {
-  EuiFlexItem,
-  EuiCard,
-  EuiBadge,
-  EuiText,
-  EuiProgress,
-} from "@elastic/eui";
+import { EuiFlexItem, EuiCard, EuiBadge, EuiText } from "@elastic/eui";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThermometerEmpty,
   faThermometerFull,
   faCloudRain,
   faCloudSun,
+  faCloud,
   faCloudSunRain,
   faSun,
 } from "@fortawesome/free-solid-svg-icons";
-import "./index.css";
-import RainForecast from "./../RainForecast"
+import RainForecast from "./../RainForecast";
 
 export default ({ city }) => {
   let date = new Date(city.fecha);
@@ -31,8 +25,10 @@ export default ({ city }) => {
     case stateSky.indexOf("lluvia") > -1:
       weatherIcon = faCloudRain;
       break;
-    case stateSky.indexOf("ubos") > -1:
     case stateSky.indexOf("ubiert") > -1:
+      weatherIcon = faCloud;
+      break;
+    case stateSky.indexOf("ubos") > -1:
       weatherIcon = faCloudSun;
       break;
     default:
@@ -43,11 +39,15 @@ export default ({ city }) => {
   return (
     <EuiFlexItem
       style={{
+        width: "500px",
         display: "inline-block",
       }}
     >
       <EuiCard
         textAlign="center"
+        style={{
+          margin: "20px",
+        }}
         betaBadgeLabel={`El tiempo en ${city.municipio.NOMBRE}`}
         icon={<FontAwesomeIcon icon={weatherIcon} size="5x" />}
         title={`${stateSky}`}
@@ -62,12 +62,12 @@ export default ({ city }) => {
             <p className="d-inline" style={{ marginBottom: "0px" }}>
               Temperatura actual:
             </p>
-            <h2
+            <h1
               className="d-inline"
               style={{ margin: "0px", marginLeft: "10px" }}
             >
               {city.temperatura_actual}º
-            </h2>
+            </h1>
           </div>
           <p>
             <FontAwesomeIcon icon={faThermometerEmpty} />
@@ -87,11 +87,11 @@ export default ({ city }) => {
           <ul style={{ listStyle: "none", textAlign: "left" }}>
             <li>Mañana: {forecast.prob_precipitacion[1]}%</li>
 
-            <RainForecast rainProbability={forecast.prob_precipitacion[1]}/>
+            <RainForecast rainProbability={forecast.prob_precipitacion[1]} />
             <li>Tarde: {forecast.prob_precipitacion[2]}%</li>
-            <RainForecast rainProbability={forecast.prob_precipitacion[2]}/>
+            <RainForecast rainProbability={forecast.prob_precipitacion[2]} />
             <li>Noche: {forecast.prob_precipitacion[3]}%</li>
-            <RainForecast rainProbability={forecast.prob_precipitacion[3]}/>
+            <RainForecast rainProbability={forecast.prob_precipitacion[3]} />
           </ul>
         </EuiText>
       </EuiCard>
