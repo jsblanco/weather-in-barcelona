@@ -5,7 +5,6 @@ import {
   EuiPageContent,
   EuiPageContentBody,
   EuiPageContentHeader,
-  EuiPageContentHeaderSection,
   EuiPageHeader,
   EuiPageHeaderSection,
   EuiTitle,
@@ -25,10 +24,10 @@ function App() {
 
   return (
     <EuiPage>
-      <EuiPageBody component="div" className="overflow-auto p-5">
+      <EuiPageBody component="div">
         <EuiPageHeader>
-          <EuiPageHeaderSection>
-            <EuiTitle size="l" className="text-center">
+          <EuiPageHeaderSection style={{width:"100%", textAlign:"center", marginTop: "30px", fontWeight:"bold"}}>
+            <EuiTitle size="l" >
               <h1>El tiempo en Barcelona</h1>
             </EuiTitle>
           </EuiPageHeaderSection>
@@ -39,8 +38,10 @@ function App() {
             ?<SearchBox/>
           :<p><i>Cargando los municipios...</i></p>}
           </EuiPageContentHeader>
-          <EuiPageContentBody>
-  {!!weatherData && weatherData.map(city=>{return <CityCard key={city.id} city={city}/>})}
+          <EuiPageContentBody style={{display: "flex", justifyContent:"center", flexWrap: "wrap" }}>
+  {weatherData.length>0
+  ? weatherData.map(city=>{return <CityCard key={city.municipio.ID_REL} city={city}/>})
+  : <p>Usa el buscador para ver el tiempo en los distintos municipios de la provincia de Barcelona</p>}
           </EuiPageContentBody>
         </EuiPageContent>
       </EuiPageBody>
