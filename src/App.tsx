@@ -17,7 +17,7 @@ import CityCard from "./components/CityCard";
 
 function App() {
   const dispatch = useDispatch();
-  const { cities, selectedCities } = useSelector((state) => state);
+  const { cities, weatherData } = useSelector((state) => state);
 
   useEffect(() => {
     if (cities.length===0) dispatch(actions.getCitiesRequest());
@@ -40,7 +40,7 @@ function App() {
           :<p><i>Cargando los municipios...</i></p>}
           </EuiPageContentHeader>
           <EuiPageContentBody>
-  {!!selectedCities && selectedCities.map(city=>{return <CityCard key={city.id} city={city}/>})}
+  {!!weatherData && weatherData.map(city=>{return <CityCard key={city.id} city={city}/>})}
           </EuiPageContentBody>
         </EuiPageContent>
       </EuiPageBody>

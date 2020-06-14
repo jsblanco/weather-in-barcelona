@@ -13,10 +13,13 @@ export default function SearchBox() {
     setOptions(cities);
   }, [cities]);
 
+
   const onChange = (e) => {
     setOptions(cities.filter((city) => city !== e));
     if (e.length > selectedCities.length) {
-      dispatch(actions.selectCity(e[e.length - 1]));
+      let selectedCity = e[e.length - 1];
+      dispatch(actions.selectCity(selectedCity));
+      dispatch(actions.getWeatherRequest(selectedCity))
     } else {
       let cityToRemove = {};
       selectedCities.forEach((city) => {
