@@ -1,25 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
+  EuiPageSideBar,
+  EuiTitle,
+} from '@elastic/eui';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <EuiPage>
+    <EuiPageSideBar>SideBar nav</EuiPageSideBar>
+    <EuiPageBody component="div">
+      <EuiPageHeader>
+        <EuiPageHeaderSection>
+          <EuiTitle size="l">
+            <h1>Page title</h1>
+          </EuiTitle>
+        </EuiPageHeaderSection>
+        <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
+      </EuiPageHeader>
+      <EuiPageContent>
+        <EuiPageContentHeader>
+          <EuiPageContentHeaderSection>
+            <EuiTitle>
+              <h2>Content title</h2>
+            </EuiTitle>
+          </EuiPageContentHeaderSection>
+          <EuiPageContentHeaderSection>
+            Content abilities
+          </EuiPageContentHeaderSection>
+        </EuiPageContentHeader>
+        <EuiPageContentBody>Content body</EuiPageContentBody>
+      </EuiPageContent>
+    </EuiPageBody>
+  </EuiPage>
   );
 }
 
